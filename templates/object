@@ -1,0 +1,11 @@
+package [% object.fully_namespaced %];
+  use Moose;
+
+  [%- FOREACH prop_name = object.attribute_names %]
+    [%- property = object.attribute(prop_name) %]
+  has '[% prop_name %]' => (is => 'ro'
+    [%- IF (property.required) %], required => 1[% END -%]
+    [%- %], isa => '[% property.perl_type %]'[% -%]
+  );
+  [%- END %]
+1;
