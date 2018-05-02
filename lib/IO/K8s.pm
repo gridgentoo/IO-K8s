@@ -1,6 +1,9 @@
 package IO::K8s;
   use Moose;
 
+  our $VERSION = '0.01';
+  # ABSTRACT: Objects representing things found in the Kubernetes API
+
   use Moose::Util qw/find_meta/;
   use Module::Runtime qw/require_module/;
   use JSON::MaybeXS qw//;
