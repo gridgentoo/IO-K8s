@@ -1,12 +1,57 @@
 package IO::K8s;
   use Moose;
 
+  use Moose::Util qw/find_meta/;
   use Module::Runtime qw/require_module/;
   use JSON::MaybeXS qw//;
 
   sub load_class {
     my $class = shift;
     require_module $class;
+  }
+
+  sub struct_to_object {
+    my ($self, $class, $params) = @_;
+
+    load_class($class);
+
+    my %args;
+
+    my $class_meta = find_meta $class;
+
+    foreach my $class_att ($class_meta->get_all_attributes) {
+      my $att_name = $class_att->name;
+
+      next if (not exists $params->{ $att_name });
+
+      if ($class_att->type_constraint->is_a_type_of('ArrayRef')) {
+        my $inner_type = $class_att->type_constraint->type_parameter;
+        if ($inner_type->is_a_type_of('Object')){
+          $args{ $att_name } = [ map { $self->struct_to_object($inner_type->name, $_) } @{ $params->{ $att_name } } ];
+        } else {
+          $args{ $att_name } = $params->{ $att_name };
+        }
+      } elsif ($class_att->type_constraint->is_a_type_of('HashRef')) {
+        if ($class_att->type_constraint->isa('Moose::Meta::TypeConstraint::Parameterizable')) {
+          # Only a HashRef type...
+          $args{ $att_name } = $params->{ $att_name } 
+        } else {
+          # HashRef[...] type
+          my $inner_type = $class_att->type_constraint->type_parameter;
+          if ($inner_type->is_a_type_of('Object')){
+            $args{ $att_name } = { map { ($_ => $self->struct_to_object($inner_type->name, $params->{ $att_name }->{ $_ })) } keys %{ $params->{ $att_name } } };
+          } else {
+            $args{ $att_name } = $params->{ $att_name };
+          }
+        }
+      } elsif ($class_att->type_constraint->is_a_type_of('Object')){
+        $args{ $att_name } = $self->struct_to_object($class_att->type_constraint->class, $params->{ $att_name });
+      } else {
+        $args{ $att_name } = $params->{ $att_name };
+      }
+    }
+
+    return $class->new(%args);
   }
 
   sub _is_internal_type {
