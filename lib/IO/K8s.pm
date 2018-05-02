@@ -92,10 +92,10 @@ package IO::K8s;
           $struct->{ $key } = $object->$att;
         } else {
           # HashRef of objects
-          $struct->{ $key } = { map { ($_ => $self->_to_jsoncaller_object($object->$att->{$_})) } keys %{ $object->$att } };
+          $struct->{ $key } = { map { ($_ => $self->object_to_struct($object->$att->{$_})) } keys %{ $object->$att } };
         }
       } else {
-        $struct->{ $key } = $self->_to_jsoncaller_object($object->$att);
+        $struct->{ $key } = $self->object_to_struct($object->$att);
       }
     }
 
