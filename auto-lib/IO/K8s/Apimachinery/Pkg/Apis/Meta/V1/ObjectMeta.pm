@@ -1,0 +1,20 @@
+package IO::K8s::Apimachinery::Pkg::Apis::Meta::V1::ObjectMeta;
+  use Moose;
+
+  has 'generateName' => (is => 'ro', isa => 'Str'  );
+  has 'ownerReferences' => (is => 'ro', isa => 'ArrayRef[IO::K8s::Apimachinery::Pkg::Apis::Meta::V1::OwnerReference]'  );
+  has 'uid' => (is => 'ro', isa => 'Str'  );
+  has 'name' => (is => 'ro', isa => 'Str'  );
+  has 'annotations' => (is => 'ro', isa => 'HashRef[Str]'  );
+  has 'resourceVersion' => (is => 'ro', isa => 'Str'  );
+  has 'clusterName' => (is => 'ro', isa => 'Str'  );
+  has 'deletionTimestamp' => (is => 'ro', isa => 'IO::K8s::Apimachinery::Pkg::Apis::Meta::V1::Time'  );
+  has 'initializers' => (is => 'ro', isa => 'IO::K8s::Apimachinery::Pkg::Apis::Meta::V1::Initializers'  );
+  has 'selfLink' => (is => 'ro', isa => 'Str'  );
+  has 'deletionGracePeriodSeconds' => (is => 'ro', isa => 'Int'  );
+  has 'creationTimestamp' => (is => 'ro', isa => 'IO::K8s::Apimachinery::Pkg::Apis::Meta::V1::Time'  );
+  has 'namespace' => (is => 'ro', isa => 'Str'  );
+  has 'generation' => (is => 'ro', isa => 'Int'  );
+  has 'labels' => (is => 'ro', isa => 'HashRef[Str]'  );
+  has 'finalizers' => (is => 'ro', isa => 'ArrayRef[Str]'  );
+1;

@@ -1,0 +1,25 @@
+package IO::K8s::Api::Core::V1::Container;
+  use Moose;
+
+  has 'name' => (is => 'ro', isa => 'Str'  );
+  has 'workingDir' => (is => 'ro', isa => 'Str'  );
+  has 'readinessProbe' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::Probe'  );
+  has 'tty' => (is => 'ro', isa => 'Bool'  );
+  has 'image' => (is => 'ro', isa => 'Str'  );
+  has 'livenessProbe' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::Probe'  );
+  has 'env' => (is => 'ro', isa => 'ArrayRef[IO::K8s::Api::Core::V1::EnvVar]'  );
+  has 'command' => (is => 'ro', isa => 'ArrayRef[Str]'  );
+  has 'stdin' => (is => 'ro', isa => 'Bool'  );
+  has 'securityContext' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::SecurityContext'  );
+  has 'stdinOnce' => (is => 'ro', isa => 'Bool'  );
+  has 'lifecycle' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::Lifecycle'  );
+  has 'volumeMounts' => (is => 'ro', isa => 'ArrayRef[IO::K8s::Api::Core::V1::VolumeMount]'  );
+  has 'terminationMessagePolicy' => (is => 'ro', isa => 'Str'  );
+  has 'resources' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::ResourceRequirements'  );
+  has 'envFrom' => (is => 'ro', isa => 'ArrayRef[IO::K8s::Api::Core::V1::EnvFromSource]'  );
+  has 'terminationMessagePath' => (is => 'ro', isa => 'Str'  );
+  has 'args' => (is => 'ro', isa => 'ArrayRef[Str]'  );
+  has 'imagePullPolicy' => (is => 'ro', isa => 'Str'  );
+  has 'ports' => (is => 'ro', isa => 'ArrayRef[IO::K8s::Api::Core::V1::ContainerPort]'  );
+  has 'volumeDevices' => (is => 'ro', isa => 'ArrayRef[IO::K8s::Api::Core::V1::VolumeDevice]'  );
+1;

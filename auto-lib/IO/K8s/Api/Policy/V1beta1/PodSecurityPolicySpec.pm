@@ -1,0 +1,22 @@
+package IO::K8s::Api::Policy::V1beta1::PodSecurityPolicySpec;
+  use Moose;
+
+  has 'hostNetwork' => (is => 'ro', isa => 'Bool'  );
+  has 'privileged' => (is => 'ro', isa => 'Bool'  );
+  has 'runAsUser' => (is => 'ro', isa => 'IO::K8s::Api::Policy::V1beta1::RunAsUserStrategyOptions'  );
+  has 'readOnlyRootFilesystem' => (is => 'ro', isa => 'Bool'  );
+  has 'fsGroup' => (is => 'ro', isa => 'IO::K8s::Api::Policy::V1beta1::FSGroupStrategyOptions'  );
+  has 'hostPID' => (is => 'ro', isa => 'Bool'  );
+  has 'volumes' => (is => 'ro', isa => 'ArrayRef[Str]'  );
+  has 'defaultAddCapabilities' => (is => 'ro', isa => 'ArrayRef[Str]'  );
+  has 'allowedFlexVolumes' => (is => 'ro', isa => 'ArrayRef[IO::K8s::Api::Policy::V1beta1::AllowedFlexVolume]'  );
+  has 'seLinux' => (is => 'ro', isa => 'IO::K8s::Api::Policy::V1beta1::SELinuxStrategyOptions'  );
+  has 'allowedHostPaths' => (is => 'ro', isa => 'ArrayRef[IO::K8s::Api::Policy::V1beta1::AllowedHostPath]'  );
+  has 'supplementalGroups' => (is => 'ro', isa => 'IO::K8s::Api::Policy::V1beta1::SupplementalGroupsStrategyOptions'  );
+  has 'allowPrivilegeEscalation' => (is => 'ro', isa => 'Bool'  );
+  has 'defaultAllowPrivilegeEscalation' => (is => 'ro', isa => 'Bool'  );
+  has 'allowedCapabilities' => (is => 'ro', isa => 'ArrayRef[Str]'  );
+  has 'hostIPC' => (is => 'ro', isa => 'Bool'  );
+  has 'requiredDropCapabilities' => (is => 'ro', isa => 'ArrayRef[Str]'  );
+  has 'hostPorts' => (is => 'ro', isa => 'ArrayRef[IO::K8s::Api::Policy::V1beta1::HostPortRange]'  );
+1;
