@@ -4,3 +4,6 @@ get-schema:
 gen-classes:
 	rm -rf auto-lib
 	carton exec build-bin/build-kubernetes-api
+
+test:
+	carton exec -- prove -v -I lib -I auto-lib t/
