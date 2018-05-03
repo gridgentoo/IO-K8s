@@ -1,7 +1,7 @@
 package [% object.fully_namespaced %];
   use Moose;
 
-  [%- FOREACH prop_name = object.attribute_names %]
+  [%- FOREACH prop_name = object.attribute_names.sort %]
     [%- property = object.attribute(prop_name) %]
   has '[% prop_name %]' => (is => 'ro'
     [%- IF (property.required) %], required => 1[% END -%]
