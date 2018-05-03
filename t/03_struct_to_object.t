@@ -60,6 +60,9 @@ my $io = IO::K8s->new;
   );
  
   isa_ok($obj, 'IO::K8s::Api::Core::V1::Service');
+  isa_ok($obj->spec, 'IO::K8s::Api::Core::V1::ServiceSpec');
+  isa_ok($obj->spec->ports->[0], 'IO::K8s::Api::Core::V1::ServicePort');
+
   my $json = $io->object_to_json($obj);
   diag $json;
 
