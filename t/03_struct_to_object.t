@@ -71,5 +71,13 @@ my $io = IO::K8s->new;
   like($json, qr|"targetPort":8022|);
 }
 
+{
+  my $obj = $io->json_to_object(
+    'IO::K8s::Api::Core::V1::Service',
+    '{"kind":"Service"}'
+  );
+  isa_ok($obj, 'IO::K8s::Api::Core::V1::Service');
+  cmp_ok($obj->kind, 'eq', 'Service'); 
+}
 
 done_testing;

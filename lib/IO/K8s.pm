@@ -8,9 +8,19 @@ package IO::K8s;
   use Module::Runtime qw/require_module/;
   use JSON::MaybeXS qw//;
 
+  has json => (is => 'ro', default => sub {
+    return JSON::MaybeXS->new;
+  });
+
   sub load_class {
     my $class = shift;
     require_module $class;
+  }
+
+  sub json_to_object {
+    my ($self, $class, $json) = @_;
+    my $struct = $self->json->decode($json);
+    return $self->struct_to_object($class, $struct);
   }
 
   sub struct_to_object {
@@ -104,7 +114,7 @@ package IO::K8s;
 
   sub object_to_json {
     my ($self, $object) = @_;
-    return JSON::MaybeXS->new->encode($self->object_to_struct($object));
+    return $self->json->encode($self->object_to_struct($object));
   }
 
 1;
