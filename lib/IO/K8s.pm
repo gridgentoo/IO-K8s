@@ -5,7 +5,7 @@ package IO::K8s;
 
   use Moose::Util qw/find_meta/;
   use Module::Runtime qw/require_module/;
-  use JSON::MaybeXS qw//;
+  use JSON::MaybeXS;
 
   has json => (is => 'ro', default => sub {
     return JSON::MaybeXS->new->canonical;
@@ -89,7 +89,7 @@ package IO::K8s;
       my $att_type = $attribute->type_constraint;
 
       if ($att_type eq 'Bool') {
-        $struct->{ $key } = ($object->$att) ? JSON::MaybeXS->true : JSON::MaybeXS->false;
+        $struct->{ $key } = ($object->$att) ? JSON->true : JSON->false;
       } elsif ($att_type eq 'Int') {
         $struct->{ $key } = int($object->$att);
       } elsif ($self->_is_internal_type($att_type)) {
