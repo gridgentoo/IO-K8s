@@ -72,6 +72,57 @@ my $io = IO::K8s->new;
 }
 
 {
+  my $obj = $io->struct_to_object(
+    'IO::K8s::Api::Extensions::V1beta1::ReplicaSet',
+    {
+      kind => 'ReplicaSet',
+      apiVersion => 'extensions/v1beta1',
+      metadata => {
+        name => 'repl_name',
+      },
+      spec => {
+        replicas => 3,
+        template => {
+          metadata => {
+            labels => {
+              label1 => 'value1',
+              label2 => 'value2',
+            }
+          },
+          spec => {
+            containers => [{
+              image => 'image1',
+              resources => {
+                requests => {
+                  cpu => '250m',
+                  memory => '64Mi',
+                },
+                limits => {
+                  cpu => '500m',
+                  memory => '128Mi',
+                },
+              }
+            }],
+          }
+        }
+      },
+    }
+  );
+
+  isa_ok($obj, 'IO::K8s::Api::Extensions::V1beta1::ReplicaSet');
+  isa_ok($obj->spec->template->metadata, 'IO::K8s::Apimachinery::Pkg::Apis::Meta::V1::ObjectMeta');
+  isa_ok($obj->spec->template->spec->containers->[0], 'IO::K8s::Api::Core::V1::Container');
+  isa_ok($obj->spec->template->spec->containers->[0]->resources, 'IO::K8s::Api::Core::V1::ResourceRequirements');
+  cmp_ok($obj->spec->template->spec->containers->[0]->resources->requests->{ cpu }, 'eq', '250m');
+  cmp_ok($obj->spec->template->spec->containers->[0]->resources->limits->{ cpu }, 'eq', '500m');
+ 
+  my $json = $io->object_to_json($obj);
+  diag $json;
+
+
+}
+
+{
   my $obj = $io->json_to_object(
     'IO::K8s::Api::Core::V1::Service',
     '{"kind":"Service"}'
