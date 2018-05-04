@@ -17,6 +17,7 @@ my $io = IO::K8s->new;
       ports => [
         { hostPort => '4607' },
       ],
+      command => [ 'c1', 'c2', 'c3' ],
       tty => 1,
     }
   );
@@ -29,6 +30,7 @@ my $io = IO::K8s->new;
   isa_ok($obj->ports->[0], 'IO::K8s::Api::Core::V1::ContainerPort');
   cmp_ok($obj->ports->[0]->hostPort, '==', 4607);
   cmp_ok($obj->tty, '==', 1);
+  cmp_ok($obj->command->[0], 'eq', 'c1');
   
   # Turn that into a JSON
   my $json = $io->object_to_json($obj);
@@ -37,6 +39,7 @@ my $io = IO::K8s->new;
   like($json, qr|"value":"3306"|);
   like($json, qr|"hostPort":4607|);
   like($json, qr|"tty":true|);
+  like($json, qr|"command":\["c1","c2","c3"\]|);
 }
 
 {
@@ -107,6 +110,9 @@ my $io = IO::K8s->new;
                 { name => 'xxx2', mountPath => '/tmp/mount2/', readOnly => 1 },
               ],
             }],
+            volumes => [
+              { name => 'volname', secret => { secretName => 'volsecret' } },
+            ]
           }
         }
       },
@@ -115,6 +121,9 @@ my $io = IO::K8s->new;
 
   isa_ok($obj, 'IO::K8s::Api::Extensions::V1beta1::ReplicaSet');
   isa_ok($obj->spec->template->metadata, 'IO::K8s::Apimachinery::Pkg::Apis::Meta::V1::ObjectMeta');
+  isa_ok($obj->spec->template->spec->volumes->[0], 'IO::K8s::Api::Core::V1::Volume');
+  cmp_ok($obj->spec->template->spec->volumes->[0]->name, 'eq', 'volname');
+  cmp_ok($obj->spec->template->spec->volumes->[0]->secret->secretName, 'eq', 'volsecret');
   isa_ok($obj->spec->template->spec->containers->[0], 'IO::K8s::Api::Core::V1::Container');
   isa_ok($obj->spec->template->spec->containers->[0]->resources, 'IO::K8s::Api::Core::V1::ResourceRequirements');
   cmp_ok($obj->spec->template->spec->containers->[0]->resources->requests->{ cpu }, 'eq', '250m');
