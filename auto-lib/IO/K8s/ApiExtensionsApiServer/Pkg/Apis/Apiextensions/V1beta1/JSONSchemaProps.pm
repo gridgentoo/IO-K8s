@@ -8,8 +8,8 @@ package IO::K8s::ApiExtensionsApiServer::Pkg::Apis::Apiextensions::V1beta1::JSON
   has 'allOf' => (is => 'ro', isa => 'ArrayRef[IO::K8s::ApiExtensionsApiServer::Pkg::Apis::Apiextensions::V1beta1::JSONSchemaProps]'  );
   has 'anyOf' => (is => 'ro', isa => 'ArrayRef[IO::K8s::ApiExtensionsApiServer::Pkg::Apis::Apiextensions::V1beta1::JSONSchemaProps]'  );
   has 'default' => (is => 'ro', isa => 'IO::K8s::ApiExtensionsApiServer::Pkg::Apis::Apiextensions::V1beta1::JSON'  );
-  has 'definitions' => (is => 'ro', isa => 'HashRef[Swagger::Schema::Schema=HASH(0x45dbb08)]'  );
-  has 'dependencies' => (is => 'ro', isa => 'HashRef[Swagger::Schema::Schema=HASH(0x4630fc8)]'  );
+  has 'definitions' => (is => 'ro', isa => ''  );
+  has 'dependencies' => (is => 'ro', isa => ''  );
   has 'description' => (is => 'ro', isa => 'Str'  );
   has 'enum' => (is => 'ro', isa => 'ArrayRef[IO::K8s::ApiExtensionsApiServer::Pkg::Apis::Apiextensions::V1beta1::JSON]'  );
   has 'example' => (is => 'ro', isa => 'IO::K8s::ApiExtensionsApiServer::Pkg::Apis::Apiextensions::V1beta1::JSON'  );
@@ -31,8 +31,8 @@ package IO::K8s::ApiExtensionsApiServer::Pkg::Apis::Apiextensions::V1beta1::JSON
   has 'not' => (is => 'ro', isa => 'IO::K8s::ApiExtensionsApiServer::Pkg::Apis::Apiextensions::V1beta1::JSONSchemaProps'  );
   has 'oneOf' => (is => 'ro', isa => 'ArrayRef[IO::K8s::ApiExtensionsApiServer::Pkg::Apis::Apiextensions::V1beta1::JSONSchemaProps]'  );
   has 'pattern' => (is => 'ro', isa => 'Str'  );
-  has 'patternProperties' => (is => 'ro', isa => 'HashRef[Swagger::Schema::Schema=HASH(0x45dbb08)]'  );
-  has 'properties' => (is => 'ro', isa => 'HashRef[Swagger::Schema::Schema=HASH(0x45dbb08)]'  );
+  has 'patternProperties' => (is => 'ro', isa => ''  );
+  has 'properties' => (is => 'ro', isa => ''  );
   has 'required' => (is => 'ro', isa => 'ArrayRef[Str]'  );
   has 'title' => (is => 'ro', isa => 'Str'  );
   has 'type' => (is => 'ro', isa => 'Str'  );

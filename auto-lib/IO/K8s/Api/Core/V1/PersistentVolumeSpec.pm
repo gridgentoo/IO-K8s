@@ -5,7 +5,7 @@ package IO::K8s::Api::Core::V1::PersistentVolumeSpec;
   has 'awsElasticBlockStore' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::AWSElasticBlockStoreVolumeSource'  );
   has 'azureDisk' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::AzureDiskVolumeSource'  );
   has 'azureFile' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::AzureFilePersistentVolumeSource'  );
-  has 'capacity' => (is => 'ro', isa => 'HashRef[Swagger::Schema::Schema=HASH(0x4603130)]'  );
+  has 'capacity' => (is => 'ro', isa => 'HashRef[Str]'  );
   has 'cephfs' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::CephFSPersistentVolumeSource'  );
   has 'cinder' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::CinderVolumeSource'  );
   has 'claimRef' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::ObjectReference'  );
