@@ -13,6 +13,7 @@ my $io = IO::K8s->new;
       env => [
         { name => 'STR_ENV', value => 'STRVALUE' },
         { name => 'INT_ENV', value => '3306' },
+        { name => 'ENV_FROM', valueFrom => { secretKeyRef => { name => 'mystore', key => 'key' } } },
       ],
       ports => [
         { hostPort => '4607' },
@@ -27,6 +28,12 @@ my $io = IO::K8s->new;
   isa_ok($obj->env->[0], 'IO::K8s::Api::Core::V1::EnvVar');
   cmp_ok($obj->env->[0]->name, 'eq', 'STR_ENV');
   cmp_ok($obj->env->[0]->value, 'eq', 'STRVALUE');
+  cmp_ok($obj->env->[1]->name, 'eq', 'INT_ENV');
+  cmp_ok($obj->env->[1]->value, 'eq', '3306');
+  cmp_ok($obj->env->[2]->name, 'eq', 'ENV_FROM');
+  cmp_ok($obj->env->[2]->valueFrom->secretKeyRef->name, 'eq', 'mystore');
+  cmp_ok($obj->env->[2]->valueFrom->secretKeyRef->key, 'eq', 'key');
+  
   isa_ok($obj->ports->[0], 'IO::K8s::Api::Core::V1::ContainerPort');
   cmp_ok($obj->ports->[0]->hostPort, '==', 4607);
   cmp_ok($obj->tty, '==', 1);
