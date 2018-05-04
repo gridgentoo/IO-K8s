@@ -58,6 +58,12 @@ package IO::K8s;
         }
       } elsif ($class_att->type_constraint->is_a_type_of('Object')){
         $args{ $att_name } = $self->struct_to_object($class_att->type_constraint->class, $params->{ $att_name });
+      } elsif ($class_att->type_constraint->is_a_type_of('Bool')) {
+        if (lc($params->{ $att_name }) eq 'true' or $params->{ $att_name } == 1) {
+          $args{ $att_name } = 1;
+        } else {
+          $args{ $att_name } = 0;
+        }
       } else {
         $args{ $att_name } = $params->{ $att_name };
       }

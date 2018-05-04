@@ -101,7 +101,11 @@ my $io = IO::K8s->new;
                   cpu => '500m',
                   memory => '128Mi',
                 },
-              }
+              },
+              volumeMounts => [
+                { name => 'xxx', mountPath => '/tmp/mount1/', readOnly => 'true' },
+                { name => 'xxx2', mountPath => '/tmp/mount2/', readOnly => 1 },
+              ],
             }],
           }
         }
@@ -119,6 +123,8 @@ my $io = IO::K8s->new;
   my $json = $io->object_to_json($obj);
   diag $json;
 
+  like($json, qr|\{"mountPath":"/tmp/mount1/","name":"xxx","readOnly":true\}|);
+  like($json, qr|\{"mountPath":"/tmp/mount2/","name":"xxx2","readOnly":true\}|);
 
 }
 
