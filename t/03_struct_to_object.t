@@ -46,6 +46,7 @@ my $io = IO::K8s->new;
   like($json, qr|"value":"3306"|);
   like($json, qr|"hostPort":4607|);
   like($json, qr|"tty":true|);
+  like($json, qr|\{"name":"INT_ENV","value":"3306"\}|);
   like($json, qr|"command":\["c1","c2","c3"\]|);
 }
 
