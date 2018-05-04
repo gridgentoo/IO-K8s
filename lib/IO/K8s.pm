@@ -2,7 +2,6 @@ package IO::K8s;
   use Moose;
 
   our $VERSION = '0.01';
-  # ABSTRACT: Objects representing things found in the Kubernetes API
 
   use Moose::Util qw/find_meta/;
   use Module::Runtime qw/require_module/;
@@ -118,3 +117,57 @@ package IO::K8s;
   }
 
 1;
+
+### main pod documentation begin ###
+
+=encoding UTF-8
+
+=head1 NAME
+
+IO::K8s - Objects representing things found in the Kubernetes API
+
+=head1 SYNOPSIS
+
+  use IO::K8s
+  
+  my $k8s = IO::K8s->new;
+
+  my $object = $k8s->json_to_object('IO::K8s::Api::Core::V1::Service', '{"kind":"Service"}');
+  # $object is an IO::K8s::Api::Core::V1::Service object
+  my $json = $k8s->object_to_json($object);
+  # $json is JSON that we can send to the Kubernetes API
+
+  my $object = $k8s->struct_to_object('IO::K8s::Api::Core::V1::Service', { kind => 'Service' });
+  # $object is an IO::K8s::Api::Core::V1::Service object
+  my $struct = $k8s->object_to_struct($object);
+  # $struct is a hashref that can be transformed to JSON
+
+=head1 DESCRIPTION
+
+This module is the set of objects and serialization / deserialization methods that represent
+the structures found inside the Kubernetes API L<https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/>
+
+=head1 SEE ALSO
+
+L<https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/>
+
+=head1 AUTHOR
+
+    Jose Luis Martinez
+    CAPSiDE
+    jlmartinez@capside.com
+
+=head1 BUGS and SOURCE
+
+The source code is located here: L<https://github.com/pplu/io-k8s-p5>
+
+Please report bugs to: L<https://github.com/pplu/io-k8s-p5/issues>
+
+=head1 COPYRIGHT and LICENSE
+
+Copyright (c) 2018 by CAPSiDE
+
+This code is distributed under the Apache 2 License. The full text of the 
+license can be found in the LICENSE file included with this module.
+
+=cut
