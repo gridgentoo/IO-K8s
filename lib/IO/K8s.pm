@@ -8,7 +8,7 @@ package IO::K8s;
   use JSON::MaybeXS qw//;
 
   has json => (is => 'ro', default => sub {
-    return JSON::MaybeXS->new;
+    return JSON::MaybeXS->new->canonical;
   });
 
   sub load_class {
