@@ -66,7 +66,7 @@ my $io = IO::K8s->new;
   my $json = $io->object_to_json($obj);
   diag $json;
 
-  like($json, qr|"metadata":{"name":"svc_name"}|);
+  like($json, qr|"metadata":\{"name":"svc_name"\}|);
   like($json, qr|"apiVersion":"v1"|);
   like($json, qr|"targetPort":8022|);
 }
