@@ -1,7 +1,7 @@
 package IO::K8s;
   use Moose;
 
-  our $VERSION = '0.02';
+  our $VERSION = '0.03';
 
   use Moose::Util qw/find_meta/;
   use Module::Runtime qw/require_module/;
