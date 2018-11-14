@@ -171,4 +171,81 @@ my $io = IO::K8s->new;
   cmp_ok($obj->kind, 'eq', 'Service'); 
 }
 
+{
+  my $obj = $io->struct_to_object(
+    'IO::K8s::ApiExtensionsApiServer::Pkg::Apis::Apiextensions::V1beta1::CustomResourceDefinitionList',
+    {
+          'items' => [
+                       {
+                         'status' => {
+                                       'conditions' => [
+                                                         {
+                                                           'message' => 'no conflicts found',
+                                                           'reason' => 'NoConflicts',
+                                                           'type' => 'NamesAccepted',
+                                                           'status' => 'True',
+                                                           'lastTransitionTime' => '2018-11-14T22:39:57Z'
+                                                         },
+                                                         {
+                                                           'message' => 'the initial names have been accepted',
+                                                           'reason' => 'InitialNamesAccepted',
+                                                           'status' => 'True',
+                                                           'type' => 'Established',
+                                                           'lastTransitionTime' => '2018-11-14T22:39:57Z'
+                                                         }
+                                                       ],
+                                       'acceptedNames' => {
+                                                            'listKind' => 'CronTabList',
+                                                            'shortNames' => [
+                                                                              'ct'
+                                                                            ],
+                                                            'plural' => 'crontabs',
+                                                            'kind' => 'CronTab',
+                                                            'singular' => 'crontab'
+                                                          }
+                                     },
+                         'spec' => {
+                                     'version' => 'v1',
+                                     'scope' => 'Namespaced',
+                                     'group' => 'stable.example.com',
+                                     'names' => {
+                                                  'listKind' => 'CronTabList',
+                                                  'shortNames' => [
+                                                                    'ct'
+                                                                  ],
+                                                  'plural' => 'crontabs',
+                                                  'kind' => 'CronTab',
+                                                  'singular' => 'crontab'
+                                                }
+                                   },
+                         'apiVersion' => 'apiextensions.k8s.io/v1beta1',
+                         'kind' => 'CustomResourceDefinition',
+                         'metadata' => {
+                                         'uid' => '367016eb-e85e-11e8-b834-080027f2c237',
+                                         'creationTimestamp' => '2018-11-14T22:39:57Z',
+                                         'generation' => 1,
+                                         'resourceVersion' => '22703',
+                                         'annotations' => {
+                                                            'kubectl.kubernetes.io/last-applied-configuration' => '{"apiVersion":"apiextensions.k8s.io/v1beta1","kind":"CustomResourceDefinition","metadata":{"annotations":{},"name":"crontabs.stable.example.com","namespace":""},"spec":{"group":"stable.example.com","names":{"kind":"CronTab","plural":"crontabs","shortNames":["ct"],"singular":"crontab"},"scope":"Namespaced","version":"v1","versions":[{"name":"v1","served":true,"storage":true}]}}
+'
+                                                          },
+                                         'name' => 'crontabs.stable.example.com',
+                                         'namespace' => '',
+                                         'selfLink' => '/apis/apiextensions.k8s.io/v1beta1/customresourcedefinitions/crontabs.stable.example.com'
+                                       }
+                       }
+                     ],
+          'apiVersion' => 'v1',
+          'kind' => 'List',
+          'metadata' => {
+                          'selfLink' => '',
+                          'resourceVersion' => ''
+                        }
+        });
+
+  isa_ok($obj, 'IO::K8s::ApiExtensionsApiServer::Pkg::Apis::Apiextensions::V1beta1::CustomResourceDefinitionList');
+  isa_ok($obj->items->[0], 'IO::K8s::ApiExtensionsApiServer::Pkg::Apis::Apiextensions::V1beta1::CustomResourceDefinition');
+}
+
+
 done_testing;
