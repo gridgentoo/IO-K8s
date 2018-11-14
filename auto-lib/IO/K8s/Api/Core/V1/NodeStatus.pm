@@ -6,6 +6,7 @@ package IO::K8s::Api::Core::V1::NodeStatus;
   has 'allocatable' => (is => 'ro', isa => 'HashRef[Str]'  );
   has 'capacity' => (is => 'ro', isa => 'HashRef[Str]'  );
   has 'conditions' => (is => 'ro', isa => 'ArrayRef[IO::K8s::Api::Core::V1::NodeCondition]'  );
+  has 'config' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::NodeConfigStatus'  );
   has 'daemonEndpoints' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::NodeDaemonEndpoints'  );
   has 'images' => (is => 'ro', isa => 'ArrayRef[IO::K8s::Api::Core::V1::ContainerImage]'  );
   has 'nodeInfo' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::NodeSystemInfo'  );

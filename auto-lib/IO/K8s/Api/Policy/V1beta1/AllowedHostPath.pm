@@ -3,6 +3,7 @@ package IO::K8s::Api::Policy::V1beta1::AllowedHostPath;
   use IO::K8s;
 
   has 'pathPrefix' => (is => 'ro', isa => 'Str'  );
+  has 'readOnly' => (is => 'ro', isa => 'Bool'  );
 
   sub to_json { IO::K8s->new->object_to_json(shift) }
 1;

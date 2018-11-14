@@ -5,6 +5,7 @@ package IO::K8s::Api::Core::V1::SecurityContext;
   has 'allowPrivilegeEscalation' => (is => 'ro', isa => 'Bool'  );
   has 'capabilities' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::Capabilities'  );
   has 'privileged' => (is => 'ro', isa => 'Bool'  );
+  has 'procMount' => (is => 'ro', isa => 'Str'  );
   has 'readOnlyRootFilesystem' => (is => 'ro', isa => 'Bool'  );
   has 'runAsGroup' => (is => 'ro', isa => 'Int'  );
   has 'runAsNonRoot' => (is => 'ro', isa => 'Bool'  );

@@ -8,6 +8,7 @@ package IO::K8s::Api::Core::V1::PodSecurityContext;
   has 'runAsUser' => (is => 'ro', isa => 'Int'  );
   has 'seLinuxOptions' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::SELinuxOptions'  );
   has 'supplementalGroups' => (is => 'ro', isa => 'ArrayRef[Int]'  );
+  has 'sysctls' => (is => 'ro', isa => 'ArrayRef[IO::K8s::Api::Core::V1::Sysctl]'  );
 
   sub to_json { IO::K8s->new->object_to_json(shift) }
 1;

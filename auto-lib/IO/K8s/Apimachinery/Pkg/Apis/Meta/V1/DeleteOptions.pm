@@ -3,6 +3,7 @@ package IO::K8s::Apimachinery::Pkg::Apis::Meta::V1::DeleteOptions;
   use IO::K8s;
 
   has 'apiVersion' => (is => 'ro', isa => 'Str'  );
+  has 'dryRun' => (is => 'ro', isa => 'ArrayRef[Str]'  );
   has 'gracePeriodSeconds' => (is => 'ro', isa => 'Int'  );
   has 'kind' => (is => 'ro', isa => 'Str'  );
   has 'orphanDependents' => (is => 'ro', isa => 'Bool'  );

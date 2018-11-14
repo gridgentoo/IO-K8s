@@ -8,7 +8,7 @@ package IO::K8s::Api::Core::V1::PersistentVolumeSpec;
   has 'azureFile' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::AzureFilePersistentVolumeSource'  );
   has 'capacity' => (is => 'ro', isa => 'HashRef[Str]'  );
   has 'cephfs' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::CephFSPersistentVolumeSource'  );
-  has 'cinder' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::CinderVolumeSource'  );
+  has 'cinder' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::CinderPersistentVolumeSource'  );
   has 'claimRef' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::ObjectReference'  );
   has 'csi' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::CSIPersistentVolumeSource'  );
   has 'fc' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::FCVolumeSource'  );

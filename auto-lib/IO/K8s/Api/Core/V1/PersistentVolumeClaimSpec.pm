@@ -3,6 +3,7 @@ package IO::K8s::Api::Core::V1::PersistentVolumeClaimSpec;
   use IO::K8s;
 
   has 'accessModes' => (is => 'ro', isa => 'ArrayRef[Str]'  );
+  has 'dataSource' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::TypedLocalObjectReference'  );
   has 'resources' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::ResourceRequirements'  );
   has 'selector' => (is => 'ro', isa => 'IO::K8s::Apimachinery::Pkg::Apis::Meta::V1::LabelSelector'  );
   has 'storageClassName' => (is => 'ro', isa => 'Str'  );

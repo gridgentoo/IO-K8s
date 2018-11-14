@@ -2,6 +2,7 @@ package IO::K8s::Api::Storage::V1::StorageClass;
   use Moose;
   use IO::K8s;
 
+  has 'allowedTopologies' => (is => 'ro', isa => 'ArrayRef[IO::K8s::Api::Core::V1::TopologySelectorTerm]'  );
   has 'allowVolumeExpansion' => (is => 'ro', isa => 'Bool'  );
   has 'apiVersion' => (is => 'ro', isa => 'Str'  );
   has 'kind' => (is => 'ro', isa => 'Str'  );
