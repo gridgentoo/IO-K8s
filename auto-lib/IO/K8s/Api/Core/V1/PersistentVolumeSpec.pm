@@ -15,7 +15,7 @@ package IO::K8s::Api::Core::V1::PersistentVolumeSpec;
   has 'flexVolume' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::FlexPersistentVolumeSource'  );
   has 'flocker' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::FlockerVolumeSource'  );
   has 'gcePersistentDisk' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::GCEPersistentDiskVolumeSource'  );
-  has 'glusterfs' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::GlusterfsVolumeSource'  );
+  has 'glusterfs' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::GlusterfsPersistentVolumeSource'  );
   has 'hostPath' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::HostPathVolumeSource'  );
   has 'iscsi' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::ISCSIPersistentVolumeSource'  );
   has 'local' => (is => 'ro', isa => 'IO::K8s::Api::Core::V1::LocalVolumeSource'  );
