@@ -1,4 +1,7 @@
-0.03 
+0.04
+ - Update to Kubernetes v1.14 API objects
+
+0.03 2018-05-15
  - add convenience to_json method to all objects (meis)
  - add Test::Exception as dependency (manwar)
 
